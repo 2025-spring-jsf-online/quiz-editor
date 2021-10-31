@@ -37,7 +37,10 @@
           General
         </div>
         <div class="card-body">
-          {{ selectedQuiz.quizName }}
+          <input 
+            type="text"
+            [(ngModel)]="selectedQuiz.quizName"
+          >
         </div>
       </div>
       <div class="card mt-3">
