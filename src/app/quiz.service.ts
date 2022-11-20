@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 
-interface QuizFromWeb {
+export interface QuizFromWeb {
   name: string;
   questions: {
     name: string;
