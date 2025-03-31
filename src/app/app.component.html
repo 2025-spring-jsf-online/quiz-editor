@@ -37,7 +37,8 @@
           General
         </div>
         <div class="card-body">
-          {{ selectedQuiz.quizName }}
+          <input type="text" [(ngModel)]="selectedQuiz.quizName">
+          <!-- implement edit functionality [(ngModel)] ... -->
         </div>
       </div>
       <div class="card mb-3">
