@@ -23,7 +23,17 @@ export class AppComponent implements OnInit {
     public quizSvc: QuizService
   ) {
   }
-
+  
+  addQuiz = () => {
+    const newQuiz: QuizDisplay = {
+      quizName: 'Untitled Quiz',
+      quizQuestions: []
+    };
+  
+    this.quizzes = [...this.quizzes, newQuiz];
+    this.selectedQuiz = newQuiz;
+  };
+  
   ngOnInit() {
     const quizzes = this.quizSvc.loadQuizzes();
     console.log(quizzes);
