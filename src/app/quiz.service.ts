@@ -24,6 +24,10 @@ export class QuizService {
         name: 'Quiz 2'
         , questions: []
       }
+      , {
+        name: 'New Quiz'
+        , questions: []
+      }
     ];
     return quizzesFromWeb;
   };

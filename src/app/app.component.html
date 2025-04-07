@@ -1,12 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4">
-      <button class="btn btn-outline-success mt-3 mb-3">
+      <button class="btn btn-outline-success mt-3 mb-3"
+      (click)="addNewQuiz()"
+      >
         Add New Quiz
       </button>
       <div class="card">
         <div class="list-group list-group-flush">
-          <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+          <button 
+          class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
           *ngFor="let q of quizzes"
           (click)="selectQuiz(q)"
           [class.active]="q === selectedQuiz"
@@ -37,7 +40,11 @@
             General
           </div>
           <div class="card-body">
-            {{ selectedQuiz.quizName }}
+            <input
+            type="text"
+            [(ngModel)]= "selectedQuiz.quizName" 
+            class="form-control"
+            >
           </div>
           </div>
 
@@ -49,9 +56,14 @@
             Coming Soon
           </div>
         </div>
+      </div>
+    </div>
 
-          <div class="card mt-3">
-          <div class="card-header">
+    <div
+      class="card mt-3"
+      *ngIf="selectedQuiz == undefined"
+      >
+        <div class="card-header">
             Other
           </div>
           <div class="card-body">
@@ -64,6 +76,7 @@
   class="col-md-8 mt-3"
   *ngIf="selectedQuiz == undefined"
   >
+
   <div class="card bg-light text-center">
     <h2>
       No quiz selectedQuiz
@@ -72,5 +85,4 @@
       Select or add new quiz
     </p>
   </div>
-</div>
 </div>
