@@ -15,8 +15,11 @@
           [class.active]="q === selectedQuiz"
           [style.text-decoration]="q.markedForDelete ? 'line-through' : 'inherit'"
           >
-          {{ q.quizName}}
-          <small class="font-italic font-weight-lighter">
+          <span class="text-truncate">
+            {{ q.quizName}}
+          </span>
+          
+          <small class="font-italic font-weight-lighter text-nowrap">
             {{ q.quizQuestions.length }} question<span *ngIf="q.quizQuestions.length !== 1">s</span>
           </small>
           </button>
@@ -89,43 +92,36 @@
           </div>
         </div>
 
-        
-    <div class="card-body">
-      <label class="form-check-lable text-danger">
-        <input 
-          type="checkbox" 
-          class="form-check-input"
-          [(ngModel)]="selectedQuiz.markedForDelete"
-          />
-          Mark for delete
-      </label>
+        <div
+        class="card mt-3"
+        *ngIf="selectedQuiz !== undefined"
+        >
+          <div class="card-header">
+              Other
+            </div>
+            <div class="card-body">
+              <div class="form-check">
+                <label class="form-check-lable text-danger">
+                  <input 
+                  type="checkbox" 
+                  class="form-check-input"
+                  [(ngModel)]="selectedQuiz.markedForDelete"
+                  />
+                  Mark for delete
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>      
+      </div>
     </div>
-  </div>
-</div>
-</div>
 
-
-    <div
-      class="card mt-3"
-      *ngIf="selectedQuiz == undefined"
-      >
-        <div class="card-header">
-            Other
-          </div>
-          <div class="card-body">
-          <div class="form-check">
-          </div>
-        </div>
-      
-
-</div>
-
-  <div 
-  class="col-md-8 mt-3"
-  *ngIf="selectedQuiz == undefined"
-  >
-</div>
-  <div class="card bg-light text-center">
+    <div 
+    class="col-md-8 mt-3"
+    *ngIf="selectedQuiz == undefined"
+    >
+    </div>
+    <div class="card bg-light text-center">
     <h2>
       No quiz selectedQuiz
     </h2>
