@@ -25,4 +25,24 @@ export class QuizService {
 
     return quizzesFromWeb;
   };
+
+  getMagicNumber = (callerWantsToSucceed: boolean): Promise<number> => {
+    return new Promise<number>(
+      (resolve, reject) => {
+
+        //
+        // Some fancy long running code here...
+        //
+
+        // Ultimately resolve if successful.
+        if (callerWantsToSucceed) {
+          resolve(42);
+        }
+        // Or reject if failure.
+        else {
+          reject("Error");
+        }
+      }
+    );
+  };
 }
