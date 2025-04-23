@@ -4,6 +4,7 @@ import { QuizService } from './quiz.service';
 interface QuizDisplay {
   quizName: string;
   quizQuestions: QuestionDisplay[];
+  markedForDelete: boolean;
 }
 
 interface QuestionDisplay {
@@ -14,36 +15,40 @@ interface QuestionDisplay {
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: false,
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
   title = 'quiz-editor';
+  quizzes: QuizDisplay[] = [];
 
-  constructor(
-    public quizSvc: QuizService
-  ) {
-  }
+  selectedQuiz?: QuizDisplay;
+
+  constructor(public quizSvc: QuizService) {}
 
   ngOnInit() {
     const quizzes = this.quizSvc.loadQuizzes();
-    console.log(quizzes);
 
     this.quizzes = quizzes.map(x => ({
-      quizName: x.name
-      , quizQuestions: x.questions.map((y: any) => ({
+      quizName: x.name,
+      quizQuestions: x.questions.map((y: any) => ({
         questionName: y.name
-      }))
+      })),
+      markedForDelete: false
     }));
-
-    console.log(this.quizzes);
   }
 
-  quizzes: QuizDisplay[] = [];
+  selectQuiz(quiz: QuizDisplay) {
+    this.selectedQuiz = quiz;
+  }
 
-  selectedQuiz: QuizDisplay | undefined = undefined;
+  addNewQuiz() {
+    const newQuiz: QuizDisplay = {
+      quizName: 'Untitled Quiz',
+      quizQuestions: [],
+      markedForDelete: false
+    };
 
-  selectQuiz = (q: QuizDisplay) => {
-    this.selectedQuiz = q;
-    console.log(this.selectedQuiz);
-  };
+    this.quizzes.push(newQuiz);
+    this.selectQuiz(newQuiz);
+  }
 }
