@@ -15,8 +15,8 @@
               q.markedForDelete ? 'line-through' : 'inherit'
             "
           >
-            {{ q.quizName }}
-            <small class="font-itallic font-weight-lighter">
+            <span class="text-truncate">{{ q.quizName }}</span>
+            <small class="font-itallic font-weight-lighter text-nowrap">
               {{ q.quizQuestions.length }} question<span
                 *ngIf="q.quizQuestions.length !== 1"
                 >s</span
