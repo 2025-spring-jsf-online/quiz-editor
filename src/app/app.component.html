@@ -99,7 +99,12 @@
     <div class="col-md-8 mt-3" *ngIf="selectedQuiz == undefined">
       <div class="card bg-light text-center">
         <h2>No Quiz Selected</h2>
-        <p>Select or add a new quiz.</p>
+        <p>
+          Select or add a new quiz
+          <button class="btn btn-link" (click)="jsPromiseOne()">One</button>
+          <button class="btn btn-link" (click)="jsPromiseTwo()">Two</button>
+          <button class="btn btn-link" (click)="jsPromiseThree()">Three</button>
+        </p>
       </div>
     </div>
   </div>
