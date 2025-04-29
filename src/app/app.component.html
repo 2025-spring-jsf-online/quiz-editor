@@ -88,8 +88,14 @@
     <div 
       *ngIf="selectedQuiz != undefined"
     >
-      <div class="mt-3 mb-3">
-        <button class="btn btn-outline-dark">
+      <div 
+      class="mt-3 mb-3"
+      [@pulseSaveCancelButtons]="deletedQuizCount + editedQuizCount + addedQuizCount > 0 ? 'somethingToSave' : 'nothingToSave'"
+      >
+        <button 
+        class="btn btn-outline-dark"
+        (click)="saveQuizzes()"
+        >
           Save
           <span 
             class="badge bg-danger ms-1"
