@@ -13,7 +13,7 @@
       </div>
     </div>
   </div>
-  <div class="row" *ngIf="!errorLoadingQuizzes">
+  <div class="row" *ngIf="!loading && !errorLoadingQuizzes">
     <div class="col-md-4">
       <button class="btn btn-outline-success mt-3 mb-3" (click)="addNewQuiz()">
         Add New Quiz
