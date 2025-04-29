@@ -50,7 +50,42 @@
       </div>
     </div>
     <div 
-      class="col-md-8"
+    class="col-md-8 mt-3"
+    *ngIf="selectedQuiz == undefined"
+  >
+    <div class="card bg-light text-center">
+      <h2>
+        No Quiz Selected
+      </h2>
+      <p>
+        Select or add a new quiz
+        <button 
+          class="btn btn-link"
+          (click)="jsPromisesOne()"
+        >
+          One
+        </button>
+        <button 
+          class="btn btn-link"
+          (click)="jsPromisesTwo()"
+        >
+          Two
+        </button>
+        <button 
+          class="btn btn-link"
+          (click)="jsPromisesThree()"
+        >
+          Three
+        </button>
+      </p>
+    </div>
+  </div>
+    <div
+    class="col-md-8"
+    [@detailsFromLeft]="detailsFromLeftAnimationState"
+    (@detailsFromLeft.done)="detailsFromLeftAnimationDone()"
+    >
+    <div 
       *ngIf="selectedQuiz != undefined"
     >
       <div class="mt-3 mb-3">
@@ -147,35 +182,6 @@
         </div>
       </div>
     </div>
-    <div 
-      class="col-md-8 mt-3"
-      *ngIf="selectedQuiz == undefined"
-    >
-      <div class="card bg-light text-center">
-        <h2>
-          No Quiz Selected
-        </h2>
-        <p>
-          Select or add a new quiz
-          <button 
-            class="btn btn-link"
-            (click)="jsPromisesOne()"
-          >
-            One
-          </button>
-          <button 
-            class="btn btn-link"
-            (click)="jsPromisesTwo()"
-          >
-            Two
-          </button>
-          <button 
-            class="btn btn-link"
-            (click)="jsPromisesThree()"
-          >
-            Three
-          </button>
-        </p>
-      </div>
-    </div>
+  </div>
+
   </div>
