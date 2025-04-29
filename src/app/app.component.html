@@ -65,7 +65,7 @@
               : 'nothingToSave'
           "
         >
-          <button class="btn btn-outline-dark">
+          <button class="btn btn-outline-dark" (click)="saveQuizzes()">
             Save
             <span class="badge bg-danger ms-1" *ngIf="deletedQuizCount > 0">
               -{{ deletedQuizCount }}

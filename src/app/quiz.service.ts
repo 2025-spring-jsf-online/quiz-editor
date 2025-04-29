@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 
@@ -8,6 +8,17 @@ export interface QuizFromWeb {
     name: string;
   }[];
 }
+
+export interface ShapeForSavingEditedQuizzes {
+  quiz: string;
+  questions: { question: string }[];
+}
+
+export interface ShapeForSavingNewQuizzes {
+  quizName: string;
+  quizQuestions: string[];
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -39,5 +50,30 @@ export class QuizService {
         reject('Error');
       }
     });
+  };
+
+  saveQuizzes = (
+    changedQuizzes: ShapeForSavingEditedQuizzes[],
+    newQuizzes: ShapeForSavingNewQuizzes[] = []
+  ) => {
+    let h = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-Sas-Token': 'sig=K2WE6NQPtyoV6ke5hwPEaEaW52fgvyFWUeCEdPJls1s',
+    });
+
+    //console.log(h);
+
+    return this.angularHttpClient
+      .post(
+        'https://modern-js.azurewebsites.net/save-quizzes-proxy',
+        JSON.stringify({
+          changedQuizzes: changedQuizzes,
+          newQuizzes: newQuizzes,
+        }),
+        {
+          headers: h,
+        }
+      )
+      .toPromise();
   };
 }
