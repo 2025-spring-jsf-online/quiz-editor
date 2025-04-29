@@ -1,4 +1,11 @@
 <div class="container">
+  <div class="row" *ngIf="loading">
+    <div class="col-md-12">
+      <div class="alert alert-dark mt-3">
+        <b>Loading...</b>
+      </div>
+    </div>
+  </div>
   <div class="row" *ngIf="errorLoadingQuizzes">
     <div class="col-md-12">
       <div class="alert alert-info mt-3">
