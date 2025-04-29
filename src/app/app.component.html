@@ -43,7 +43,9 @@
     <div class="col-md-8" *ngIf="selectedQuiz != undefined">
       <div class="mt-3 mb-3">
         <button class="btn btn-outline-dark">Save</button>
-        <button class="btn btn-link">Cancel</button>
+        <button class="btn btn-link" (click)="cancelAllChanges()">
+          Cancel all changes
+        </button>
       </div>
       <div class="card">
         <div class="card-header">General</div>
