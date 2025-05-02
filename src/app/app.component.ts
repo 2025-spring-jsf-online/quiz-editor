@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QuizService, QuizFromWeb } from './quiz.service';
+import { QuizService, QuizFromWeb, ShapeForSavingNewQuizzes, ShapeForSavingEditedQuizzes } from './quiz.service';
 
 import {
   trigger,
@@ -231,5 +231,27 @@ export class AppComponent implements OnInit {
 
   detailsFromLeftAnimationDone = () => {
     this.detailsFromLeftAnimationState = "leftPostion";
+  };
+
+  saveQuizzes = async () => {
+    try {
+      const newQuizzes: ShapeForSavingNewQuizzes[] = [];
+      const editedQuizCount: ShapeForSavingEditedQuizzes[] = this.getEditedQuizzes().map(x => ({
+        quiz: x.quizName
+        , questions: x.quizQuestions.map(y => ({
+          question: y.questionName
+        }))
+      }));
+
+      const numberOfUpdatedQuizzes = await this.quizSvc.saveQuizzes(
+        editedQuizCount
+        , newQuizzes
+      );
+
+      console.log("numberOfUpdatedQuizzes ", numberOfUpdatedQuizzes)
+    }
+    catch (err) {
+      console.error(err);
+    }
   };
 }
