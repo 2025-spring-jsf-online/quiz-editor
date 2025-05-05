@@ -8,10 +8,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 
 import { provideHttpClient } from '@angular/common/http';
+import { QuizComponent } from './quiz/quiz.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    QuizComponent
   ],
   imports: [
     BrowserModule,
