@@ -9,7 +9,8 @@
       <div class="card">
         <div class="list-group list-group-flush">
           <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                  *ngFor="let q of quizzes">
+                  *ngFor="let q of quizzes" 
+                  (click)="selectQuiz(q)" >       
             {{ q.quizName }}
             <small class="font-itallic font-weight-lighter">
               {{q.quizQuestions.length}} questions
