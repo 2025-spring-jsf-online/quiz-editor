@@ -35,11 +35,27 @@ export class AppComponent implements OnInit {
     console.log(this.quizzes);
   }
 
+  // collect list of quizzes
   quizzes: QuizDisplay[] = [];
 
+  // determine selected quiz, initialize as undefined
   selectedQuiz: QuizDisplay | undefined = undefined;
   selectQuiz = (q: QuizDisplay) => {
     this.selectedQuiz = q;
     console.log(this.selectedQuiz);
+  };
+
+  // function to add a new quiz
+  addNewQuiz = () => {
+    const newQuiz = {
+      quizName: 'Untitled Quiz',
+      quizQuestions: [],
+    };
+
+    // add new quiz to list
+    this.quizzes = [...this.quizzes, newQuiz];
+
+    // updated selected quiz to new quiz
+    this.selectedQuiz = newQuiz;
   };
 }
