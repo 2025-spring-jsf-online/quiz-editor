@@ -19,20 +19,17 @@ interface QuestionDisplay {
 export class AppComponent implements OnInit {
   title = 'quiz-editor';
 
-  constructor(
-    public quizSvc: QuizService
-  ) {
-  }
+  constructor(public quizSvc: QuizService) {}
 
   ngOnInit() {
     const quizzes = this.quizSvc.loadQuizzes();
     console.log(quizzes);
 
-    this.quizzes = quizzes.map(x => ({
-      quizName: x.name
-      , quizQuestions: x.questions.map((y: any) => ({
-        questionName: y.name
-      }))
+    this.quizzes = quizzes.map((x) => ({
+      quizName: x.name,
+      quizQuestions: x.questions.map((y: any) => ({
+        questionName: y.name,
+      })),
     }));
 
     console.log(this.quizzes);
@@ -48,17 +45,32 @@ export class AppComponent implements OnInit {
   };
 
   addNewQuiz = () => {
-
     const newQuiz = {
-      quizName: "Untitled Quiz"
-      , quizQuestions: []
+      quizName: 'Untitled Quiz',
+      quizQuestions: [],
     };
 
-    this.quizzes = [
-      ...this.quizzes
-      , newQuiz
-    ];
+    this.quizzes = [...this.quizzes, newQuiz];
 
     this.selectQuiz(newQuiz);
+  };
+
+  addNewQuestion = () => {
+    if (this.selectedQuiz) {
+      this.selectedQuiz.quizQuestions = [
+        ...this.selectedQuiz.quizQuestions,
+        {
+          questionName: 'Untitled Question',
+        },
+      ];
+    }
+  };
+
+  removeQuestion = (questionToRemove: QuestionDisplay) => {
+    if (this.selectedQuiz) {
+      this.selectedQuiz.quizQuestions = this.selectedQuiz.quizQuestions.filter(
+        (x) => x !== questionToRemove
+      );
+    }
   };
 }
