@@ -11,6 +11,9 @@
             *ngFor="let q of quizzes"
             (click)="selectQuiz(q)"
             [class.active]="q === selectedQuiz"
+            [style.text-decoration]="
+              q.markedForDelete ? 'line-through' : 'inherit'
+            "
           >
             {{ q.quizName }}
             <small class="fst-italic fw-lighter">
@@ -66,7 +69,18 @@
         </div>
         <div class="card mt-3">
           <div class="card-header">Other</div>
-          <div class="card-body">Coming soon</div>
+          <div class="card-body">
+            <div class="form-check">
+              <label for="" class="form-check-label text-danger">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  [(ngModel)]="selectedQuiz.markedForDelete"
+                />
+                Mark for Delete
+              </label>
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-md-8 mt-3" *ngIf="selectedQuiz == undefined">
