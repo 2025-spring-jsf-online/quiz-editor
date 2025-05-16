@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 interface QuizFromWeb {
@@ -8,30 +9,28 @@ interface QuizFromWeb {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class QuizService {
-
-  constructor() { }
+  constructor(private angularHttpClient: HttpClient) {}
 
   loadQuizzes = () => {
-
     const quizzesFromWeb: QuizFromWeb[] = [
       {
-        name: 'Quiz 1'
-        , questions: [
+        name: 'Quiz 1',
+        questions: [
           {
-            name: 'Question 1'
-          }
-          , {
-            name: 'Question 2'
-          }
-        ]
-      }
-      , {
-        name: 'Quiz 2'
-        , questions: []
-      }
+            name: 'Question 1',
+          },
+          {
+            name: 'Question 2',
+          },
+        ],
+      },
+      {
+        name: 'Quiz 2',
+        questions: [],
+      },
     ];
 
     return quizzesFromWeb;
